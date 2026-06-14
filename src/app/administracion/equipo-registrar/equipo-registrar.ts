@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Equipo } from '../../core/models/equipo.model';
 import { EquipoService } from '../../core/services/equipo.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-equipo-registrar',
@@ -11,6 +12,7 @@ import { EquipoService } from '../../core/services/equipo.service';
 })
 export class EquipoRegistrar implements OnInit {
   private readonly equipoService = inject(EquipoService);
+  private readonly cookieService = inject(CookieService);
 
   readonly MAX_EQUIPOS = 48;
   readonly GRUPOS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
@@ -24,6 +26,18 @@ export class EquipoRegistrar implements OnInit {
 
   ngOnInit(): void {
     this.cargarEquipos();
+    // Inicializar la cookie de equipos. Si existe, cargar su valor; si no, crearla vacía.
+    // Tiempo de vida de la cookie: 30 minutos (puede ajustarse según necesidades)
+    if (!this.cookieService.check('equipos')) {
+      this.cookieService.set('equipos', JSON.stringify([]), 30); // 30 minutos
+    } else {
+        try {
+          this.equipos = JSON.parse(this.cookieService.get('equipos'));
+        } catch {
+          this.equipos = [];
+          this.cookieService.set('equipos', JSON.stringify([]), 30); // Reiniciar cookie si el valor no es un JSON válido
+        }
+    }
   }
 
   cargarEquipos(): void {
@@ -52,6 +66,8 @@ export class EquipoRegistrar implements OnInit {
           this.cargando = false;
           if (res.exitoso) {
             this.equipos = [...this.equipos, res.data];
+            // Actualizar la cookie con el nuevo equipo registrado
+            this.cookieService.set('equipos', JSON.stringify(this.equipos));
             this.mensajeExito = res.mensaje;
             this.nuevoNombre = '';
             this.nuevoGrupo = '';
