@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --fm-rose: #f36497;
+  --fm-magenta: #f13ca0;
+  --fm-purple: #4711bf;
+  --fm-teal: #06d9b2;
+  --fm-salmon: #f2866f;
+
+  --bs-primary: #4711bf;
+  --bs-secondary: #f36497;
+  --bs-success: #06d9b2;
+  --bs-info: #f13ca0;
+  --bs-warning: #f2866f;
+  --bs-danger: #f13ca0;
+}
+
+html,
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--fm-rose) 28%, white) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--fm-teal) 25%, white) 0%, transparent 42%),
+    #f6f4fb;
+  color: #1e1730;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: color-mix(in srgb, var(--fm-magenta) 20%, white);
+  color: #1e1730;
+}
+
+.dropdown-item.active {
+  background-color: var(--fm-purple);
+  color: #fff;
+}

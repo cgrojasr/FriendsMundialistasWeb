@@ -1,0 +1,152 @@
+<div class="row justify-content-center g-4">
+
+  <!-- ── Hero banner ── -->
+  <div class="col-12">
+    <div class="wc-hero rounded-3 text-center py-4 px-3">
+      <span class="badge wc-badge-hero mb-2">FIFA WORLD CUP 2026</span>
+      <h1 class="text-white fw-black text-uppercase mb-1 wc-title">Registro de Equipos</h1>
+      <p class="mb-0 wc-subtitle">
+        Administración del torneo &middot; Máximo {{ MAX_EQUIPOS }} equipos
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Formulario ── -->
+  <div class="col-12 col-md-8 col-xl-6">
+    <div class="card wc-card shadow-lg mb-4">
+      <div class="card-header wc-card-header d-flex align-items-center justify-content-between">
+        <h5 class="mb-0 text-uppercase fw-bold wc-section-title">Nuevo Equipo</h5>
+        @if (cargando) {
+          <div class="spinner-border spinner-border-sm wc-spinner" role="status" aria-label="Cargando">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        }
+      </div>
+      <div class="card-body p-4">
+
+        @if (mensajeExito) {
+          <div class="alert alert-success alert-dismissible d-flex align-items-start gap-2 fade show" role="alert">
+            <span class="fw-bold fs-5">✓</span>
+            <span>{{ mensajeExito }}</span>
+            <button type="button" class="btn-close ms-auto" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+          </div>
+        }
+
+        @if (mensajeError) {
+          <div class="alert alert-danger alert-dismissible d-flex align-items-start gap-2 fade show" role="alert">
+            <span class="fw-bold fs-5">!</span>
+            <span>{{ mensajeError }}</span>
+            <button type="button" class="btn-close ms-auto" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+          </div>
+        }
+
+        <form (ngSubmit)="registrar()" #form="ngForm" novalidate>
+
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="nombreEquipo" class="form-label wc-label">
+              Nombre del Equipo <span class="text-danger">*</span>
+            </label>
+            <input
+              id="nombreEquipo"
+              type="text"
+              class="form-control wc-input"
+              [(ngModel)]="nuevoNombre"
+              name="nombreEquipo"
+              placeholder="Ej: Argentina"
+              autocomplete="off"
+              (input)="limpiarMensajes()"
+            />
+          </div>
+
+          <!-- Grupo -->
+          <div class="mb-4">
+            <label for="grupoEquipo" class="form-label wc-label">
+              Grupo <span class="fst-italic fw-normal text-secondary">(opcional)</span>
+            </label>
+            <select
+              id="grupoEquipo"
+              class="form-select wc-input"
+              [(ngModel)]="nuevoGrupo"
+              name="grupoEquipo"
+              (change)="limpiarMensajes()"
+            >
+              <option value="">— Sin grupo asignado —</option>
+              @for (grupo of GRUPOS; track grupo) {
+                <option [value]="grupo">Grupo {{ grupo }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Progreso -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+              <small class="wc-label">Equipos registrados</small>
+              <small class="wc-label fw-bold">{{ equipos.length }} / {{ MAX_EQUIPOS }}</small>
+            </div>
+            <div class="progress wc-progress-track">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                [style.width.%]="(equipos.length / MAX_EQUIPOS) * 100"
+                [class.bg-success]="equipos.length < MAX_EQUIPOS * 0.75"
+                [class.bg-warning]="equipos.length >= MAX_EQUIPOS * 0.75 && equipos.length < MAX_EQUIPOS"
+                [class.bg-danger]="equipos.length >= MAX_EQUIPOS"
+                [attr.aria-valuenow]="equipos.length"
+                aria-valuemin="0"
+                [attr.aria-valuemax]="MAX_EQUIPOS">
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button
+              type="submit"
+              class="btn wc-btn-registrar fw-bold text-uppercase"
+              [disabled]="cargando || equipos.length >= MAX_EQUIPOS">
+              @if (cargando) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Guardando...
+              } @else {
+                Registrar Equipo
+              }
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- ── Lista de equipos ── -->
+    @if (equipos.length > 0) {
+      <div class="card wc-card shadow-lg">
+        <div class="card-header wc-card-header d-flex align-items-center justify-content-between">
+          <h5 class="mb-0 text-uppercase fw-bold wc-section-title">Equipos Registrados</h5>
+          <span class="badge rounded-pill wc-badge-count">{{ equipos.length }}</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          @for (equipo of equipos; track equipo.nombre; let i = $index) {
+            <li class="list-group-item wc-list-item d-flex align-items-center gap-3 py-3">
+              <span class="wc-num">{{ i + 1 }}</span>
+              <span class="flex-grow-1 fw-semibold text-white">{{ equipo.nombre }}</span>
+              @if (equipo.grupo) {
+                <span class="badge wc-badge-grupo">Grupo {{ equipo.grupo }}</span>
+              } @else {
+                <span class="badge wc-badge-singrupo">Sin grupo</span>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+    <!-- ── Estado vacío ── -->
+    @if (equipos.length === 0) {
+      <div class="text-center py-5 wc-empty">
+        <div class="wc-empty-icon">⚽</div>
+        <p class="mt-2 mb-0">Aún no hay equipos registrados.</p>
+      </div>
+    }
+
+  </div>
+</div>

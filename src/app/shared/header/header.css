@@ -1,0 +1,42 @@
+.app-navbar {
+	background: linear-gradient(110deg, #f13ca0 0%, #4711bf 52%, #06d9b2 100%);
+	border-bottom: 3px solid #f2866f;
+	box-shadow: 0 8px 20px rgba(71, 17, 191, 0.18);
+}
+
+.brand-icon {
+	font-size: 1.3rem;
+}
+
+.brand-text {
+	color: #ffffff;
+}
+
+.brand-accent {
+	color: #f2866f;
+}
+
+.nav-link-app {
+	color: #ffffff;
+}
+
+.nav-link-app:hover,
+.nav-link-app:focus {
+	color: #f2866f;
+}
+
+.app-dropdown-menu {
+	background: color-mix(in srgb, #4711bf 90%, white);
+	border-color: #f13ca0;
+}
+
+.app-dropdown-item {
+	color: #ffffff;
+	transition: background 0.2s;
+}
+
+.app-dropdown-item:hover,
+.app-dropdown-item:focus {
+	color: #ffffff;
+	background: color-mix(in srgb, #f13ca0 35%, transparent);
+}

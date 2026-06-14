@@ -1,0 +1,157 @@
+/* Hero */
+.wc-hero {
+  background: linear-gradient(130deg, #f13ca0 0%, #4711bf 48%, #06d9b2 100%);
+  border-bottom: 3px solid #f2866f;
+  box-shadow: 0 12px 24px rgba(71, 17, 191, 0.18);
+}
+
+.wc-badge-hero {
+  background-color: #f2866f !important;
+  color: #1e1730 !important;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.wc-title {
+  letter-spacing: 0.03em;
+}
+
+.wc-subtitle {
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+/* Cards */
+.wc-card {
+  background: rgba(71, 17, 191, 0.87);
+  border: 1px solid rgba(243, 100, 151, 0.5);
+  border-radius: 14px;
+}
+
+.wc-card-header {
+  background: linear-gradient(90deg, rgba(243, 100, 151, 0.24), rgba(241, 60, 160, 0.34));
+  border-bottom: 1px solid rgba(6, 217, 178, 0.45);
+}
+
+.wc-section-title {
+  color: #f2866f;
+  letter-spacing: 0.08em;
+  font-size: 0.88rem;
+}
+
+/* Form */
+.wc-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f36497;
+}
+
+.wc-input {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1.5px solid rgba(6, 217, 178, 0.45) !important;
+  color: #fff !important;
+  border-radius: 10px;
+}
+
+.wc-input::placeholder {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.wc-input:focus {
+  border-color: #06d9b2 !important;
+  background-color: rgba(6, 217, 178, 0.14) !important;
+  box-shadow: 0 0 0 0.2rem rgba(6, 217, 178, 0.25) !important;
+  color: #fff !important;
+}
+
+.wc-input option {
+  background-color: #4711bf;
+  color: #fff;
+}
+
+.wc-progress-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Button */
+.wc-btn-registrar {
+  background: linear-gradient(130deg, #06d9b2 0%, #f2866f 100%);
+  color: #1e1730;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.wc-btn-registrar:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: #1e1730;
+}
+
+.wc-btn-registrar:disabled {
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* List */
+.wc-list-item {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(6, 217, 178, 0.25) !important;
+  border-left: 3px solid #f13ca0 !important;
+}
+
+.wc-list-item:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.wc-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #f2866f;
+  width: 1.4rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Badges */
+.wc-badge-count {
+  background-color: #f13ca0 !important;
+}
+
+.wc-badge-grupo {
+  background-color: rgba(6, 217, 178, 0.22) !important;
+  color: #06d9b2 !important;
+  border: 1px solid rgba(6, 217, 178, 0.45);
+  font-size: 0.68rem;
+}
+
+.wc-badge-singrupo {
+  background-color: rgba(243, 100, 151, 0.2) !important;
+  color: #f36497 !important;
+  border: 1px solid rgba(243, 100, 151, 0.45);
+  font-size: 0.68rem;
+}
+
+/* Empty state */
+.wc-empty {
+  color: rgba(30, 23, 48, 0.55);
+}
+
+.wc-empty-icon {
+  font-size: 3rem;
+}
+
+/* Spinner */
+.wc-spinner {
+  color: #f2866f;
+}

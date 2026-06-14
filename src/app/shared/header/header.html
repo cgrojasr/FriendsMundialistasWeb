@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg fw-semibold app-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <span class="brand-icon">⚽</span>
+      <span class="fw-black brand-text">Amigos <span class="brand-accent">Mundialistas</span></span>
+    </a>
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#mainNav"
+      aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link-app" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Administración
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end app-dropdown-menu">
+            <li>
+              <a class="dropdown-item app-dropdown-item"
+                routerLink="/administracion/equipo-registrar"
+                routerLinkActive="active"
+                [style.background]="''">
+                Registrar Equipo
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item app-dropdown-item"
+                routerLink="/administracion/equipo-asignar-grupo"
+                routerLinkActive="active"
+                [style.background]="''">
+                Asignar Grupo
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
