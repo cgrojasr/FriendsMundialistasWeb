@@ -25,14 +25,13 @@ export class EquipoRegistrar implements OnInit {
   cargando = false;
 
   ngOnInit(): void {
-    this.cargarEquipos();
     // Inicializar la cookie de equipos. Si existe, cargar su valor; si no, crearla vacía.
     // Tiempo de vida de la cookie: 30 minutos (puede ajustarse según necesidades)
     if (!this.cookieService.check('equipos')) {
       this.cookieService.set('equipos', JSON.stringify([]), 30); // 30 minutos
     } else {
         try {
-          this.equipos = JSON.parse(this.cookieService.get('equipos'));
+          this.cargarEquipos();
         } catch {
           this.equipos = [];
           this.cookieService.set('equipos', JSON.stringify([]), 30); // Reiniciar cookie si el valor no es un JSON válido

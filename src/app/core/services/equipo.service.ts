@@ -8,14 +8,22 @@ import {
   EquipoRegistrarRequest,
   GrupoComposicion,
 } from '../models/equipo.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class EquipoService {
   private readonly http = inject(HttpClient);
+  private readonly cookieService = inject(CookieService);
   private readonly baseUrl = '/api/equipos';
 
   getAll(): Observable<ApiResponse<Equipo[]>> {
-    return this.http.get<ApiResponse<Equipo[]>>(this.baseUrl);
+    // Simular respuesta desde la cookie (reemplazar con llamada real a la API)
+    const equipos: Equipo[] = this.cookieService.check('equipos')
+      ? JSON.parse(this.cookieService.get('equipos'))
+      : [];
+    return of({ data: equipos, mensaje: 'Equipos obtenidos exitosamente.', exitoso: true });
+    // return of({ data: [], mensaje: 'Equipos obtenidos exitosamente.', exitoso: true }); // Simulación de respuesta vacía
+    // return this.http.get<ApiResponse<Equipo[]>>(this.baseUrl);
   }
 
   registrar(request: EquipoRegistrarRequest): Observable<ApiResponse<Equipo>> {
