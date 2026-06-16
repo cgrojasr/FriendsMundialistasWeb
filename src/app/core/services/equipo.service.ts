@@ -33,10 +33,42 @@ export class EquipoService {
   }
 
   asignarGrupo(equipoId: number, request: EquipoAsignarGrupoRequest): Observable<ApiResponse<Equipo>> {
-    return this.http.put<ApiResponse<Equipo>>(`${this.baseUrl}/${equipoId}/grupo`, request);
+    // Simulación de respuesta exitosa (reemplazar con llamada real a la API)
+    let equipoAsignado: Equipo | null = null;
+    if (this.cookieService.check('equipos')) {
+      const equipos: Equipo[] = JSON.parse(this.cookieService.get('equipos'));
+      const equipoIndex = equipos.findIndex((e) => e.id === equipoId);
+      if (equipoIndex !== -1) {
+        equipos[equipoIndex].grupo = request.grupo;
+        equipoAsignado = equipos[equipoIndex];
+        this.cookieService.set('equipos', JSON.stringify(equipos));
+      }
+    }
+    return of({ data: equipoAsignado!, mensaje: 'Equipo asignado al grupo exitosamente.', exitoso: true });
+    // return of({ data: null!, mensaje: 'Equipo no encontrado.', exitoso: false }); // Simulación de respuesta de error
+    // return this.http.put<ApiResponse<Equipo>>(`${this.baseUrl}/${equipoId}/grupo`, request);
   }
 
   getComposicionGrupos(): Observable<ApiResponse<GrupoComposicion[]>> {
-    return this.http.get<ApiResponse<GrupoComposicion[]>>('/api/grupos/composicion');
+    let gruposComposicion: GrupoComposicion[] = [];
+    if (this.cookieService.check('equipos')) {
+      const equipos: Equipo[] = JSON.parse(this.cookieService.get('equipos'));
+      const gruposMap: { [key: string]: Equipo[] } = {};
+      equipos.forEach((equipo) => {
+        const grupo = equipo.grupo || 'Sin Grupo';
+        if (!gruposMap[grupo]) {
+          gruposMap[grupo] = [];
+        }
+        gruposMap[grupo].push(equipo);
+      });
+      gruposComposicion = Object.keys(gruposMap).map((grupo) => ({
+        grupo,
+        equipos: gruposMap[grupo],
+      }));
+    }
+    return of({ data: gruposComposicion, mensaje: 'Composición de grupos obtenida exitosamente.', exitoso: true });
+    // Simulación de respuesta (reemplazar con llamada real a la API)
+    //
+    // return this.http.get<ApiResponse<GrupoComposicion[]>>('/api/grupos/composicion');
   }
 }

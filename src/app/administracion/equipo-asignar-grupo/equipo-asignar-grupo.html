@@ -91,39 +91,9 @@
 	</div>
 
 	<div class="col-12 col-xl-10">
-		<div class="card ag-card shadow-sm">
-			<div class="card-header ag-card-header">
-				<h5 class="mb-0 text-uppercase fw-bold ag-section-title">Composición de Grupos</h5>
-			</div>
-			<div class="card-body p-4">
-				<div class="row g-3">
-					@for (item of composicion(); track item.grupo) {
-						<div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-							<div class="ag-group-card h-100 p-3">
-								<div class="d-flex justify-content-between align-items-center mb-2">
-									<h6 class="mb-0 text-uppercase fw-bold text-white">Grupo {{ item.grupo }}</h6>
-									<span class="badge ag-capacity" [class.bg-danger]="item.equipos.length >= MAX_EQUIPOS_POR_GRUPO">
-										{{ item.equipos.length }} / {{ MAX_EQUIPOS_POR_GRUPO }}
-									</span>
-								</div>
-
-								@if (item.equipos.length === 0) {
-									<p class="ag-empty mb-0">Sin equipos asignados</p>
-								} @else {
-									<ul class="list-group list-group-flush">
-										@for (equipo of item.equipos; track equipo.id) {
-											<li class="list-group-item ag-team-item px-0 py-2 d-flex align-items-center gap-2">
-												<span class="ag-dot"></span>
-												<span class="text-white">{{ equipo.nombre }}</span>
-											</li>
-										}
-									</ul>
-								}
-							</div>
-						</div>
-					}
-				</div>
-			</div>
-		</div>
+		<app-equipo-asignar-grupo-tabla
+			[composicion]="composicion()"
+			[maxEquiposPorGrupo]="MAX_EQUIPOS_POR_GRUPO"
+		/>
 	</div>
 </div>

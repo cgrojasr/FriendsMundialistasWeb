@@ -1,0 +1,60 @@
+<div class="row g-4 justify-content-center">
+	<div class="col-12">
+		<div class="cv-hero rounded-3 text-center py-4 px-3">
+			<span class="badge cv-hero-badge mb-2">FIFA WORLD CUP 2026</span>
+			<h1 class="text-white text-uppercase fw-bold mb-1 cv-title">Visualización del Calendario</h1>
+			<p class="mb-0 cv-subtitle">Fixture completo de la fase de grupos</p>
+		</div>
+	</div>
+
+	<div class="col-12 col-xl-11">
+		<div class="card cv-card shadow-sm">
+			<div class="card-header cv-card-header d-flex justify-content-between align-items-center">
+				<h5 class="mb-0 text-uppercase fw-bold cv-section-title">Partidos Registrados</h5>
+				<div class="d-flex align-items-center gap-2">
+					@if (cargando()) {
+						<span class="spinner-border spinner-border-sm cv-spinner" aria-hidden="true"></span>
+					}
+					<span class="cv-updated">Actualizado: {{ ultimaActualizacion() || 'cargando...' }}</span>
+				</div>
+			</div>
+
+			<div class="card-body p-0">
+				@if (mensajeError()) {
+					<div class="p-4">
+						<div class="alert alert-danger mb-0" role="alert">{{ mensajeError() }}</div>
+					</div>
+				} @else if (partidosVista().length === 0) {
+					<div class="p-4 text-center cv-empty">No hay partidos disponibles.</div>
+				} @else {
+					<div class="table-responsive">
+						<table class="table table-hover align-middle mb-0 cv-table">
+							<thead>
+								<tr>
+									<th scope="col">Fase</th>
+									<th scope="col">Grupo</th>
+									<th scope="col">Equipo Local</th>
+									<th scope="col">Equipo Visitante</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Hora</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (partido of partidosVista(); track partido.id) {
+									<tr>
+										<td class="text-white-50">{{ partido.fase }}</td>
+										<td><span class="badge cv-badge-group">Grupo {{ partido.grupo }}</span></td>
+										<td class="text-white fw-semibold">{{ partido.equipoLocalNombre }}</td>
+										<td class="text-white fw-semibold">{{ partido.equipoVisitanteNombre }}</td>
+										<td class="text-white-50">{{ partido.fecha }}</td>
+										<td class="text-white-50">{{ partido.hora }}</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>

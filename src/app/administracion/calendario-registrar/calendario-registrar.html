@@ -1,0 +1,152 @@
+<div class="row g-4 justify-content-center">
+	<div class="col-12">
+		<div class="cr-hero rounded-3 text-center py-4 px-3">
+			<span class="badge cr-hero-badge mb-2">FIFA WORLD CUP 2026</span>
+			<h1 class="text-white text-uppercase fw-bold mb-1 cr-title">Registro de Partidos - Fase de Grupos</h1>
+			<p class="mb-0 cr-subtitle">Calendario oficial para pronósticos de usuarios</p>
+		</div>
+	</div>
+
+	<div class="col-12 col-xl-10">
+		<div class="card cr-card shadow-sm">
+			<div class="card-header cr-card-header d-flex justify-content-between align-items-center">
+				<h5 class="mb-0 text-uppercase fw-bold cr-section-title">Nuevo Partido</h5>
+				@if (cargando()) {
+					<span class="spinner-border spinner-border-sm cr-spinner" aria-hidden="true"></span>
+				}
+			</div>
+
+			<div class="card-body p-4">
+				@if (mensajeExito()) {
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						{{ mensajeExito() }}
+						<button type="button" class="btn-close" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+					</div>
+				}
+
+				@if (mensajeError()) {
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						{{ mensajeError() }}
+						<button type="button" class="btn-close" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+					</div>
+				}
+
+				@if (equiposConGrupo().length < 2) {
+					<div class="alert alert-warning mb-0" role="alert">
+						Debes tener al menos 2 equipos asignados a grupos para registrar partidos.
+					</div>
+				} @else {
+					<form (ngSubmit)="registrarPartido()" novalidate>
+						<div class="row g-3">
+							<div class="col-12 col-md-6">
+								<label class="form-label cr-label" for="equipoLocal">Equipo local</label>
+								<select
+									id="equipoLocal"
+									name="equipoLocal"
+									class="form-select cr-input"
+									[(ngModel)]="equipoLocalId"
+									(change)="limpiarMensajes()"
+								>
+									<option value="">Selecciona equipo local</option>
+									@for (equipo of equiposConGrupo(); track equipo.id) {
+										<option [value]="equipo.id">{{ etiquetaEquipo(equipo) }}</option>
+									}
+								</select>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<label class="form-label cr-label" for="equipoVisitante">Equipo visitante</label>
+								<select
+									id="equipoVisitante"
+									name="equipoVisitante"
+									class="form-select cr-input"
+									[(ngModel)]="equipoVisitanteId"
+									(change)="limpiarMensajes()"
+								>
+									<option value="">Selecciona equipo visitante</option>
+									@for (equipo of equiposConGrupo(); track equipo.id) {
+										<option [value]="equipo.id">{{ etiquetaEquipo(equipo) }}</option>
+									}
+								</select>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<label class="form-label cr-label" for="fechaPartido">Fecha</label>
+								<input
+									id="fechaPartido"
+									name="fechaPartido"
+									type="date"
+									class="form-control cr-input"
+									[(ngModel)]="fechaPartido"
+									(input)="limpiarMensajes()"
+								/>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<label class="form-label cr-label" for="horaPartido">Hora</label>
+								<input
+									id="horaPartido"
+									name="horaPartido"
+									type="time"
+									class="form-control cr-input"
+									[(ngModel)]="horaPartido"
+									(input)="limpiarMensajes()"
+								/>
+							</div>
+
+							<div class="col-12 d-grid d-md-flex justify-content-md-end mt-2">
+								<button type="submit" class="btn cr-btn-submit text-uppercase fw-bold" [disabled]="cargando()">
+									@if (cargando()) {
+										<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+										Guardando...
+									} @else {
+										Registrar Partido
+									}
+								</button>
+							</div>
+						</div>
+					</form>
+				}
+			</div>
+		</div>
+	</div>
+
+	<div class="col-12 col-xl-10">
+		<div class="card cr-card shadow-sm">
+			<div class="card-header cr-card-header">
+				<h5 class="mb-0 text-uppercase fw-bold cr-section-title">Calendario de Partidos</h5>
+			</div>
+
+			<div class="card-body p-0">
+				@if (partidosOrdenados().length === 0) {
+					<div class="p-4 text-center cr-empty">Aún no hay partidos registrados.</div>
+				} @else {
+					<div class="table-responsive">
+						<table class="table table-hover align-middle mb-0 cr-table">
+							<thead>
+								<tr>
+									<th scope="col">Grupo</th>
+									<th scope="col">Partido</th>
+									<th scope="col">Fecha y Hora</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (partido of partidosOrdenados(); track partido.id) {
+									<tr>
+										<td>
+											<span class="badge cr-badge-group">Grupo {{ partido.grupo }}</span>
+										</td>
+										<td class="text-white fw-semibold">
+											{{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
+										</td>
+										<td class="text-white-50">{{ formatearFechaHora(partido.fechaHoraIso) }}</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>

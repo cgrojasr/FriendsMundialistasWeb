@@ -17,6 +17,7 @@
             Administración
           </a>
           <ul class="dropdown-menu dropdown-menu-end app-dropdown-menu">
+            <li><h6 class="dropdown-header text-uppercase">Equipo</h6></li>
             <li>
               <a class="dropdown-item app-dropdown-item"
                 routerLink="/administracion/equipo-registrar"
@@ -31,6 +32,32 @@
                 routerLinkActive="active"
                 [style.background]="''">
                 Asignar Grupo
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item app-dropdown-item"
+                routerLink="/administracion/equipo-visualizar-grupo"
+                routerLinkActive="active"
+                [style.background]="''">
+                Visualizar Grupos
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><h6 class="dropdown-header text-uppercase">Calendario</h6></li>
+            <li>
+              <a class="dropdown-item app-dropdown-item"
+                routerLink="/administracion/calendario-registrar"
+                routerLinkActive="active"
+                [style.background]="''">
+                Registrar Calendario
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item app-dropdown-item"
+                routerLink="/administracion/calendario-visualizar"
+                routerLinkActive="active"
+                [style.background]="''">
+                Visualizar Calendario
               </a>
             </li>
           </ul>

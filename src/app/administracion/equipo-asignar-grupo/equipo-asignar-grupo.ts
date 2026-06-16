@@ -2,10 +2,11 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Equipo, GrupoComposicion } from '../../core/models/equipo.model';
 import { EquipoService } from '../../core/services/equipo.service';
+import { EquipoAsignarGrupoTabla } from '../equipo-asignar-grupo-tabla/equipo-asignar-grupo-tabla';
 
 @Component({
   selector: 'app-equipo-asignar-grupo',
-  imports: [FormsModule],
+  imports: [FormsModule, EquipoAsignarGrupoTabla],
   templateUrl: './equipo-asignar-grupo.html',
   styleUrl: './equipo-asignar-grupo.css',
 })
@@ -74,6 +75,13 @@ export class EquipoAsignarGrupo {
     }
 
     this.cargando.set(true);
+    //validar que el grupo no tenga más de 4 equipos asignados
+    const grupoActual = this.composicion().find(g => g.grupo === this.selectedGrupo);
+    if (grupoActual && grupoActual.equipos.length >= this.MAX_EQUIPOS_POR_GRUPO) {
+      this.cargando.set(false);
+      this.mensajeError.set(`El grupo ${this.selectedGrupo} ya tiene el máximo de ${this.MAX_EQUIPOS_POR_GRUPO} equipos asignados.`);
+      return;
+    }
     this.equipoService
       .asignarGrupo(Number(this.selectedEquipoId), { grupo: this.selectedGrupo })
       .subscribe({

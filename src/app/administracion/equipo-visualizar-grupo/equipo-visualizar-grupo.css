@@ -1,0 +1,94 @@
+.vg-hero {
+	background: linear-gradient(130deg, #f36497 0%, #f13ca0 42%, #4711bf 76%, #06d9b2 100%);
+	border-bottom: 3px solid #f2866f;
+	box-shadow: 0 12px 24px rgba(71, 17, 191, 0.18);
+}
+
+.vg-hero-badge {
+	background-color: #f2866f !important;
+	color: #1e1730 !important;
+	font-size: 0.65rem;
+	letter-spacing: 0.12em;
+	font-weight: 800;
+}
+
+.vg-title {
+	letter-spacing: 0.03em;
+}
+
+.vg-subtitle {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	letter-spacing: 0.05em;
+	opacity: 0.88;
+}
+
+.vg-card {
+	background: rgba(71, 17, 191, 0.87);
+	border: 1px solid rgba(243, 100, 151, 0.5);
+	border-radius: 12px;
+}
+
+.vg-card-header {
+	background: linear-gradient(90deg, rgba(243, 100, 151, 0.24), rgba(241, 60, 160, 0.34));
+	border-bottom: 1px solid rgba(6, 217, 178, 0.45);
+}
+
+.vg-section-title {
+	color: #f2866f;
+	letter-spacing: 0.08em;
+	font-size: 0.9rem;
+}
+
+.vg-spinner {
+	color: #f2866f;
+}
+
+.vg-updated {
+	color: #fff;
+	font-size: 0.8rem;
+	opacity: 0.92;
+}
+
+.vg-badge-info {
+	background-color: rgba(6, 217, 178, 0.2);
+	color: #06d9b2;
+	border: 1px solid rgba(6, 217, 178, 0.45);
+}
+
+.vg-group-card {
+	border: 1px solid rgba(6, 217, 178, 0.36);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.vg-badge-completo {
+	background-color: rgba(6, 217, 178, 0.25);
+	color: #06d9b2;
+	border: 1px solid rgba(6, 217, 178, 0.5);
+}
+
+.vg-badge-incompleto {
+	background-color: rgba(242, 134, 111, 0.22);
+	color: #f2866f;
+	border: 1px solid rgba(242, 134, 111, 0.45);
+}
+
+.vg-empty {
+	color: rgba(255, 255, 255, 0.72);
+	font-size: 0.86rem;
+}
+
+.vg-team-item {
+	background: transparent;
+	border-color: rgba(6, 217, 178, 0.28);
+}
+
+.vg-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #06d9b2;
+	display: inline-block;
+}
