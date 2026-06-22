@@ -110,4 +110,8 @@ export class EquipoAsignarGrupo {
   getEquipoNombre(equipo: Equipo): string {
     return equipo.grupo ? `${equipo.nombre} (Grupo ${equipo.grupo})` : `${equipo.nombre} (Sin grupo)`;
   }
+
+  mostrarGrupo(grupo: string) {
+    console.log(`Grupo seleccionado: ${grupo}`)
+  }
 }

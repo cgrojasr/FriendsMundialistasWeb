@@ -94,6 +94,7 @@
 		<app-equipo-asignar-grupo-tabla
 			[composicion]="composicion()"
 			[maxEquiposPorGrupo]="MAX_EQUIPOS_POR_GRUPO"
+			(grupoSeleccionado)="mostrarGrupo($event)"
 		/>
 	</div>
 </div>

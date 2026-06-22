@@ -1,0 +1,95 @@
+.pr-hero {
+  background: linear-gradient(130deg, #f36497 0%, #f13ca0 42%, #4711bf 76%, #06d9b2 100%);
+  border-bottom: 3px solid #f2866f;
+  box-shadow: 0 12px 24px rgba(71, 17, 191, 0.18);
+}
+
+.pr-hero-badge {
+  background-color: #f2866f !important;
+  color: #1e1730 !important;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+
+.pr-title {
+  letter-spacing: 0.03em;
+}
+
+.pr-subtitle {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  opacity: 0.88;
+}
+
+.pr-card {
+  background: rgba(71, 17, 191, 0.87);
+  border: 1px solid rgba(243, 100, 151, 0.5);
+  border-radius: 12px;
+}
+
+.pr-card-header {
+  background: linear-gradient(90deg, rgba(243, 100, 151, 0.24), rgba(241, 60, 160, 0.34));
+  border-bottom: 1px solid rgba(6, 217, 178, 0.45);
+}
+
+.pr-section-title {
+  color: #f2866f;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+}
+
+.pr-label {
+  color: #f36497;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.pr-input {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border: 1.5px solid rgba(6, 217, 178, 0.45) !important;
+  color: #fff !important;
+}
+
+.pr-input:focus {
+  border-color: #06d9b2 !important;
+  box-shadow: 0 0 0 0.2rem rgba(6, 217, 178, 0.25) !important;
+  background-color: rgba(6, 217, 178, 0.14) !important;
+}
+
+.pr-btn-submit {
+  background: linear-gradient(130deg, #06d9b2 0%, #f2866f 100%);
+  border: none;
+  color: #1e1730;
+}
+
+.pr-btn-submit:hover:not(:disabled) {
+  color: #1e1730;
+  opacity: 0.9;
+}
+
+.pr-btn-submit:disabled {
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.pr-table {
+  color: #fff;
+}
+
+.pr-table thead th {
+  background-color: rgba(6, 217, 178, 0.2);
+  color: #f2866f;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.pr-table tbody td {
+  border-color: rgba(255, 255, 255, 0.12);
+}

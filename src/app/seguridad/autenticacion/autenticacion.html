@@ -1,0 +1,78 @@
+<div class="row g-4 justify-content-center">
+	<div class="col-12">
+		<div class="au-hero rounded-3 text-center py-4 px-3">
+			<span class="badge au-hero-badge mb-2">FIFA WORLD CUP 2026</span>
+			<h1 class="text-white text-uppercase fw-bold mb-1 au-title">Autenticación por DNI</h1>
+			<p class="mb-0 au-subtitle">Ingreso rápido y seguro sin registro manual</p>
+		</div>
+	</div>
+
+	<div class="col-12 col-md-8 col-xl-6">
+		@if (!autenticado()) {
+			<div class="card au-card shadow-sm">
+				<div class="card-header au-card-header">
+					<h5 class="mb-0 text-uppercase fw-bold au-section-title">Ingresar al Sistema</h5>
+				</div>
+				<div class="card-body p-4">
+					@if (mensajeError()) {
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							{{ mensajeError() }}
+							<button type="button" class="btn-close" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+						</div>
+					}
+
+					<form (ngSubmit)="ingresar()" novalidate>
+						<div class="mb-3">
+							<label class="form-label au-label" for="dni">Documento de identidad (DNI)</label>
+							<input
+								id="dni"
+								name="dni"
+								type="text"
+								maxlength="8"
+								inputmode="numeric"
+								autocomplete="off"
+								class="form-control au-input"
+								placeholder="Ej: 12345678"
+								[(ngModel)]="dni"
+								(input)="limpiarMensajes()"
+							/>
+							<small class="text-white-50">Debe contener exactamente 8 dígitos numéricos.</small>
+						</div>
+
+						<div class="d-grid">
+							<button type="submit" class="btn au-btn-submit text-uppercase fw-bold" [disabled]="cargando()">
+								@if (cargando()) {
+									<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+									Validando...
+								} @else {
+									Ingresar
+								}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		} @else {
+			<div class="card au-card shadow-sm">
+				<div class="card-header au-card-header d-flex justify-content-between align-items-center">
+					<h5 class="mb-0 text-uppercase fw-bold au-section-title">Pantalla Principal del Usuario</h5>
+					<button type="button" class="btn btn-outline-light btn-sm" (click)="salir()">Cerrar Sesión</button>
+				</div>
+				<div class="card-body p-4">
+					@if (mensajeExito()) {
+						<div class="alert alert-success mb-3" role="alert">
+							{{ mensajeExito() }}
+						</div>
+					}
+
+					<div class="au-panel p-3 rounded-3">
+						<h6 class="text-white text-uppercase fw-bold mb-2">Acceso habilitado</h6>
+						<p class="text-white-50 mb-0">
+							Tu autenticación fue validada correctamente. Ya puedes navegar por las funcionalidades del torneo.
+						</p>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>

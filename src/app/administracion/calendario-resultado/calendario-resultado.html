@@ -1,0 +1,216 @@
+<div class="row g-4 justify-content-center">
+	<div class="col-12">
+		<div class="crv-hero rounded-3 text-center py-4 px-3">
+			<span class="badge crv-hero-badge mb-2">FIFA WORLD CUP 2026</span>
+			<h1 class="text-white text-uppercase fw-bold mb-1 crv-title">Registro de Resultado Oficial</h1>
+			<p class="mb-0 crv-subtitle">Validación final para cálculo de puntos y tabla de posiciones</p>
+		</div>
+	</div>
+
+	<div class="col-12 col-xl-11">
+		<div class="card crv-card shadow-sm mb-4">
+			<div class="card-header crv-card-header d-flex justify-content-between align-items-center">
+				<h5 class="mb-0 text-uppercase fw-bold crv-section-title">Resultado del Partido</h5>
+				<div class="d-flex align-items-center gap-2">
+					@if (cargando()) {
+						<span class="spinner-border spinner-border-sm crv-spinner" aria-hidden="true"></span>
+					}
+					<span class="crv-updated">Actualizado: {{ ultimaActualizacion() || 'cargando...' }}</span>
+				</div>
+			</div>
+
+			<div class="card-body p-4">
+				@if (mensajeExito()) {
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						{{ mensajeExito() }}
+						<button
+							type="button"
+							class="btn-close"
+							(click)="mensajeExito.set('')"
+							aria-label="Cerrar"
+						></button>
+					</div>
+				}
+
+				@if (mensajeError()) {
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						{{ mensajeError() }}
+						<button
+							type="button"
+							class="btn-close"
+							(click)="mensajeError.set('')"
+							aria-label="Cerrar"
+						></button>
+					</div>
+				}
+
+				@if (partidosVista().length === 0) {
+					<div class="alert alert-warning mb-0" role="alert">
+						No hay partidos disponibles para registrar resultados.
+					</div>
+				} @else {
+					<form (ngSubmit)="guardarResultado()" novalidate>
+						<div class="row g-3">
+							<div class="col-12">
+								<label class="form-label crv-label" for="partidoSelect">Partido</label>
+								<select
+									id="partidoSelect"
+									name="partidoSelect"
+									class="form-select crv-input"
+									[(ngModel)]="partidoIdSeleccionado"
+									(change)="seleccionarPartido()"
+								>
+									<option value="">Selecciona un partido</option>
+									@for (partido of partidosOrdenados(); track partido.id) {
+										<option [value]="partido.id">
+											Grupo {{ partido.grupo }} · {{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
+											({{ partido.fecha }} {{ partido.hora }})
+										</option>
+									}
+								</select>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<label class="form-label crv-label" for="golesLocal">Goles Local</label>
+								<input
+									id="golesLocal"
+									name="golesLocal"
+									type="number"
+									min="0"
+									step="1"
+									class="form-control crv-input"
+									[(ngModel)]="golesLocal"
+								/>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<label class="form-label crv-label" for="golesVisitante">Goles Visitante</label>
+								<input
+									id="golesVisitante"
+									name="golesVisitante"
+									type="number"
+									min="0"
+									step="1"
+									class="form-control crv-input"
+									[(ngModel)]="golesVisitante"
+								/>
+							</div>
+
+							@if (resultadoYaRegistrado() && !modoEdicion()) {
+								<div class="col-12">
+									<div class="alert alert-info mb-0" role="alert">
+										Este partido ya tiene resultado oficial. Si necesitas corregirlo, habilita edición manual.
+									</div>
+								</div>
+							}
+
+							@if (modoEdicion()) {
+								<div class="col-12">
+									<div class="form-check">
+										<input
+											id="confirmarActualizacion"
+											name="confirmarActualizacion"
+											type="checkbox"
+											class="form-check-input"
+											[ngModel]="confirmarActualizacion()"
+											(ngModelChange)="confirmarActualizacion.set($event)"
+										/>
+										<label class="form-check-label text-white" for="confirmarActualizacion">
+											Confirmo la corrección manual del resultado oficial.
+										</label>
+									</div>
+								</div>
+							}
+
+							<div class="col-12 d-grid d-md-flex justify-content-md-end gap-2 mt-2">
+								@if (resultadoYaRegistrado() && !modoEdicion()) {
+									<button
+										type="button"
+										class="btn btn-outline-light"
+										(click)="habilitarEdicion()"
+									>
+										Habilitar Edición
+									</button>
+								}
+
+								<button
+									type="submit"
+									class="btn crv-btn-submit text-uppercase fw-bold"
+									[disabled]="cargando()"
+								>
+									@if (cargando()) {
+										<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+										Guardando...
+									} @else if (modoEdicion()) {
+										Actualizar Resultado
+									} @else {
+										Registrar Resultado
+									}
+								</button>
+							</div>
+						</div>
+					</form>
+				}
+			</div>
+		</div>
+
+		<div class="card crv-card shadow-sm">
+			<div class="card-header crv-card-header d-flex justify-content-between align-items-center">
+				<h5 class="mb-0 text-uppercase fw-bold crv-section-title">Partidos y Resultado Oficial</h5>
+				<div class="d-flex align-items-center gap-2">
+					@if (cargando()) {
+						<span class="spinner-border spinner-border-sm crv-spinner" aria-hidden="true"></span>
+					}
+					<span class="crv-updated">Actualizado: {{ ultimaActualizacion() || 'cargando...' }}</span>
+				</div>
+			</div>
+
+			<div class="card-body p-0">
+				@if (mensajeError()) {
+					<div class="p-4">
+						<div class="alert alert-danger mb-0" role="alert">{{ mensajeError() }}</div>
+					</div>
+				} @else if (partidosVista().length === 0) {
+					<div class="p-4 text-center crv-empty">No hay partidos disponibles.</div>
+				} @else {
+					<div class="table-responsive">
+						<table class="table table-hover align-middle mb-0 crv-table">
+							<thead>
+								<tr>
+									<th scope="col">Fase</th>
+									<th scope="col">Grupo</th>
+									<th scope="col">Equipo Local</th>
+									<th scope="col">Equipo Visitante</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Hora</th>
+									<th scope="col">Resultado</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (partido of partidosVista(); track partido.id) {
+									<tr>
+										<td class="text-white-50">{{ partido.fase }}</td>
+										<td><span class="badge crv-badge-group">Grupo {{ partido.grupo }}</span></td>
+										<td class="text-white fw-semibold">{{ partido.equipoLocalNombre }}</td>
+										<td class="text-white fw-semibold">{{ partido.equipoVisitanteNombre }}</td>
+										<td class="text-white-50">{{ partido.fecha }}</td>
+										<td class="text-white-50">{{ partido.hora }}</td>
+										<td>
+											@if (partido.tieneResultado) {
+												<span class="badge crv-badge-result">
+													{{ partido.golesLocal }} - {{ partido.golesVisitante }}
+												</span>
+											} @else {
+												<span class="badge bg-secondary">Pendiente</span>
+											}
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,78 @@
+<div class="row g-4 justify-content-center">
+	<div class="col-12">
+		<div class="ur-hero rounded-3 text-center py-4 px-3">
+			<span class="badge ur-hero-badge mb-2">FIFA WORLD CUP 2026</span>
+			<h1 class="text-white text-uppercase fw-bold mb-1 ur-title">Registro Automático por DNI</h1>
+			<p class="mb-0 ur-subtitle">Acceso inmediato con creación automática del usuario</p>
+		</div>
+	</div>
+
+	<div class="col-12 col-md-8 col-xl-6">
+		@if (!autenticado()) {
+			<div class="card ur-card shadow-sm">
+				<div class="card-header ur-card-header">
+					<h5 class="mb-0 text-uppercase fw-bold ur-section-title">Autenticación</h5>
+				</div>
+				<div class="card-body p-4">
+					@if (mensajeError()) {
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							{{ mensajeError() }}
+							<button type="button" class="btn-close" (click)="limpiarMensajes()" aria-label="Cerrar"></button>
+						</div>
+					}
+
+					<form (ngSubmit)="ingresar()" novalidate>
+						<div class="mb-3">
+							<label class="form-label ur-label" for="dni">Documento de identidad (DNI)</label>
+							<input
+								id="dni"
+								name="dni"
+								type="text"
+								maxlength="8"
+								inputmode="numeric"
+								autocomplete="off"
+								class="form-control ur-input"
+								placeholder="Ej: 12345678"
+								[(ngModel)]="dni"
+								(input)="limpiarMensajes()"
+							/>
+							<small class="text-white-50">Formato válido: 8 dígitos numéricos.</small>
+						</div>
+
+						<div class="d-grid">
+							<button type="submit" class="btn ur-btn-submit text-uppercase fw-bold" [disabled]="cargando()">
+								@if (cargando()) {
+									<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+									Procesando...
+								} @else {
+									Ingresar
+								}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		} @else {
+			<div class="card ur-card shadow-sm">
+				<div class="card-header ur-card-header d-flex justify-content-between align-items-center">
+					<h5 class="mb-0 text-uppercase fw-bold ur-section-title">Pantalla Principal del Usuario</h5>
+					<button type="button" class="btn btn-outline-light btn-sm" (click)="cerrarSesion()">Cerrar Sesión</button>
+				</div>
+				<div class="card-body p-4">
+					@if (mensajeExito()) {
+						<div class="alert alert-success mb-3" role="alert">
+							{{ mensajeExito() }}
+						</div>
+					}
+
+					<div class="ur-panel p-3 rounded-3">
+						<h6 class="text-white text-uppercase fw-bold mb-2">Acceso habilitado</h6>
+						<p class="text-white-50 mb-0">
+							El sistema completó la autenticación y, si el DNI no existía, creó el usuario automáticamente con datos mínimos.
+						</p>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>
