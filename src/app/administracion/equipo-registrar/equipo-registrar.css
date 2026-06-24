@@ -1,13 +1,13 @@
 /* Hero */
 .wc-hero {
-  background: linear-gradient(130deg, #f13ca0 0%, #4711bf 48%, #06d9b2 100%);
-  border-bottom: 3px solid #f2866f;
-  box-shadow: 0 12px 24px rgba(71, 17, 191, 0.18);
+  background: linear-gradient(130deg, #e61d25 0%, #2a398d 48%, #3cac3b 100%);
+  border-bottom: 3px solid #e61d25;
+  box-shadow: 0 12px 24px rgba(42, 57, 141, 0.18);
 }
 
 .wc-badge-hero {
-  background-color: #f2866f !important;
-  color: #1e1730 !important;
+  background-color: #e61d25 !important;
+  color: #1f2626 !important;
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -27,18 +27,18 @@
 
 /* Cards */
 .wc-card {
-  background: rgba(71, 17, 191, 0.87);
-  border: 1px solid rgba(243, 100, 151, 0.5);
+  background: rgba(42, 57, 141, 0.87);
+  border: 1px solid rgba(209, 212, 209, 0.5);
   border-radius: 14px;
 }
 
 .wc-card-header {
-  background: linear-gradient(90deg, rgba(243, 100, 151, 0.24), rgba(241, 60, 160, 0.34));
-  border-bottom: 1px solid rgba(6, 217, 178, 0.45);
+  background: linear-gradient(90deg, rgba(209, 212, 209, 0.24), rgba(230, 29, 37, 0.34));
+  border-bottom: 1px solid rgba(60, 172, 59, 0.45);
 }
 
 .wc-section-title {
-  color: #f2866f;
+  color: #e61d25;
   letter-spacing: 0.08em;
   font-size: 0.88rem;
 }
@@ -49,12 +49,12 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #f36497;
+  color: #d1d4d1;
 }
 
 .wc-input {
   background-color: rgba(255, 255, 255, 0.12) !important;
-  border: 1.5px solid rgba(6, 217, 178, 0.45) !important;
+  border: 1.5px solid rgba(60, 172, 59, 0.45) !important;
   color: #fff !important;
   border-radius: 10px;
 }
@@ -64,14 +64,14 @@
 }
 
 .wc-input:focus {
-  border-color: #06d9b2 !important;
-  background-color: rgba(6, 217, 178, 0.14) !important;
-  box-shadow: 0 0 0 0.2rem rgba(6, 217, 178, 0.25) !important;
+  border-color: #3cac3b !important;
+  background-color: rgba(60, 172, 59, 0.14) !important;
+  box-shadow: 0 0 0 0.2rem rgba(60, 172, 59, 0.25) !important;
   color: #fff !important;
 }
 
 .wc-input option {
-  background-color: #4711bf;
+  background-color: #2a398d;
   color: #fff;
 }
 
@@ -82,8 +82,8 @@
 
 /* Button */
 .wc-btn-registrar {
-  background: linear-gradient(130deg, #06d9b2 0%, #f2866f 100%);
-  color: #1e1730;
+  background: linear-gradient(130deg, #3cac3b 0%, #e61d25 100%);
+  color: #1f2626;
   border: none;
   border-radius: 10px;
   padding: 0.75rem;
@@ -95,7 +95,7 @@
 .wc-btn-registrar:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
-  color: #1e1730;
+  color: #1f2626;
 }
 
 .wc-btn-registrar:disabled {
@@ -106,8 +106,8 @@
 /* List */
 .wc-list-item {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(6, 217, 178, 0.25) !important;
-  border-left: 3px solid #f13ca0 !important;
+  border-color: rgba(60, 172, 59, 0.25) !important;
+  border-left: 3px solid #e61d25 !important;
 }
 
 .wc-list-item:hover {
@@ -117,7 +117,7 @@
 .wc-num {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #f2866f;
+  color: #e61d25;
   width: 1.4rem;
   text-align: right;
   flex-shrink: 0;
@@ -125,26 +125,26 @@
 
 /* Badges */
 .wc-badge-count {
-  background-color: #f13ca0 !important;
+  background-color: #e61d25 !important;
 }
 
 .wc-badge-grupo {
-  background-color: rgba(6, 217, 178, 0.22) !important;
-  color: #06d9b2 !important;
-  border: 1px solid rgba(6, 217, 178, 0.45);
+  background-color: rgba(60, 172, 59, 0.22) !important;
+  color: #3cac3b !important;
+  border: 1px solid rgba(60, 172, 59, 0.45);
   font-size: 0.68rem;
 }
 
 .wc-badge-singrupo {
-  background-color: rgba(243, 100, 151, 0.2) !important;
-  color: #f36497 !important;
-  border: 1px solid rgba(243, 100, 151, 0.45);
+  background-color: rgba(209, 212, 209, 0.2) !important;
+  color: #d1d4d1 !important;
+  border: 1px solid rgba(209, 212, 209, 0.45);
   font-size: 0.68rem;
 }
 
 /* Empty state */
 .wc-empty {
-  color: rgba(30, 23, 48, 0.55);
+  color: rgba(31, 38, 38, 0.55);
 }
 
 .wc-empty-icon {
@@ -153,5 +153,5 @@
 
 /* Spinner */
 .wc-spinner {
-  color: #f2866f;
+  color: #e61d25;
 }

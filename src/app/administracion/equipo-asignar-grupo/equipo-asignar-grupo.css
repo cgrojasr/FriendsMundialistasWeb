@@ -1,12 +1,12 @@
 .ag-hero {
-	background: linear-gradient(130deg, #f36497 0%, #f13ca0 42%, #4711bf 76%, #06d9b2 100%);
-	border-bottom: 3px solid #f2866f;
-	box-shadow: 0 12px 24px rgba(71, 17, 191, 0.18);
+	background: linear-gradient(130deg, #d1d4d1 0%, #e61d25 42%, #2a398d 76%, #3cac3b 100%);
+	border-bottom: 3px solid #e61d25;
+	box-shadow: 0 12px 24px rgba(42, 57, 141, 0.18);
 }
 
 .ag-hero-badge {
-	background-color: #f2866f !important;
-	color: #1e1730 !important;
+	background-color: #e61d25 !important;
+	color: #1f2626 !important;
 	font-size: 0.65rem;
 	letter-spacing: 0.12em;
 	font-weight: 800;
@@ -25,28 +25,28 @@
 }
 
 .ag-card {
-	background: rgba(71, 17, 191, 0.87);
-	border: 1px solid rgba(243, 100, 151, 0.5);
+	background: rgba(42, 57, 141, 0.87);
+	border: 1px solid rgba(209, 212, 209, 0.5);
 	border-radius: 12px;
 }
 
 .ag-card-header {
-	background: linear-gradient(90deg, rgba(243, 100, 151, 0.24), rgba(241, 60, 160, 0.34));
-	border-bottom: 1px solid rgba(6, 217, 178, 0.45);
+	background: linear-gradient(90deg, rgba(209, 212, 209, 0.24), rgba(230, 29, 37, 0.34));
+	border-bottom: 1px solid rgba(60, 172, 59, 0.45);
 }
 
 .ag-section-title {
-	color: #f2866f;
+	color: #e61d25;
 	letter-spacing: 0.08em;
 	font-size: 0.9rem;
 }
 
 .ag-spinner {
-	color: #f2866f;
+	color: #e61d25;
 }
 
 .ag-label {
-	color: #f36497;
+	color: #d1d4d1;
 	text-transform: uppercase;
 	font-size: 0.75rem;
 	letter-spacing: 0.06em;
@@ -55,30 +55,30 @@
 
 .ag-input {
 	background-color: rgba(255, 255, 255, 0.12) !important;
-	border: 1.5px solid rgba(6, 217, 178, 0.45) !important;
+	border: 1.5px solid rgba(60, 172, 59, 0.45) !important;
 	color: #fff !important;
 }
 
 .ag-input:focus {
-	border-color: #06d9b2 !important;
-	box-shadow: 0 0 0 0.2rem rgba(6, 217, 178, 0.25) !important;
-	background-color: rgba(6, 217, 178, 0.14) !important;
+	border-color: #3cac3b !important;
+	box-shadow: 0 0 0 0.2rem rgba(60, 172, 59, 0.25) !important;
+	background-color: rgba(60, 172, 59, 0.14) !important;
 }
 
 .ag-input option {
-	background-color: #4711bf;
+	background-color: #2a398d;
 	color: #fff;
 }
 
 .ag-btn-assign {
-	background: linear-gradient(130deg, #06d9b2 0%, #f2866f 100%);
+	background: linear-gradient(130deg, #3cac3b 0%, #e61d25 100%);
 	border: none;
-	color: #1e1730;
+	color: #1f2626;
 	min-width: 230px;
 }
 
 .ag-btn-assign:hover:not(:disabled) {
-	color: #1e1730;
+	color: #1f2626;
 	opacity: 0.9;
 }
 

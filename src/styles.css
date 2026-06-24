@@ -1,41 +1,125 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --fm-rose: #f36497;
-  --fm-magenta: #f13ca0;
-  --fm-purple: #4711bf;
-  --fm-teal: #06d9b2;
-  --fm-salmon: #f2866f;
+  --fm-green: #3cac3b;
+  --fm-blue: #2a398d;
+  --fm-red: #e61d25;
+  --fm-gray-light: #d1d4d1;
+  --fm-gray-dark: #474a4a;
+  --fm-white: #f7f8f7;
+  --fm-surface: rgba(247, 248, 247, 0.88);
+  --fm-surface-strong: #f2f4f2;
+  --fm-border: rgba(71, 74, 74, 0.16);
+  --fm-shadow: 0 22px 60px rgba(42, 57, 141, 0.14);
 
-  --bs-primary: #4711bf;
-  --bs-secondary: #f36497;
-  --bs-success: #06d9b2;
-  --bs-info: #f13ca0;
-  --bs-warning: #f2866f;
-  --bs-danger: #f13ca0;
+  --bs-primary: #2a398d;
+  --bs-secondary: #474a4a;
+  --bs-success: #3cac3b;
+  --bs-info: #d1d4d1;
+  --bs-warning: #e61d25;
+  --bs-danger: #e61d25;
+  --bs-body-bg: #eef1ed;
+  --bs-body-color: #1f2626;
+  --bs-border-color: rgba(71, 74, 74, 0.16);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html,
 body {
   min-height: 100%;
   background:
-    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--fm-rose) 28%, white) 0%, transparent 40%),
-    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--fm-teal) 25%, white) 0%, transparent 42%),
-    #f6f4fb;
-  color: #1e1730;
+    radial-gradient(circle at top left, rgba(60, 172, 59, 0.26) 0, transparent 32%),
+    radial-gradient(circle at 80% 12%, rgba(230, 29, 37, 0.2) 0, transparent 24%),
+    linear-gradient(145deg, rgba(42, 57, 141, 0.08), transparent 34%),
+    linear-gradient(180deg, #eef1ed 0%, #dfe4df 100%);
+  color: var(--fm-gray-dark);
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.badge {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+}
+
+a {
+  color: var(--fm-blue);
+}
+
+.card,
+.dropdown-menu,
+.table,
+.alert,
+.form-control,
+.form-select,
+.list-group-item {
+  border-color: var(--fm-border);
+}
+
+.card,
+.dropdown-menu,
+.table-responsive,
+.alert {
+  box-shadow: var(--fm-shadow);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--fm-blue);
+  --bs-btn-border-color: var(--fm-blue);
+  --bs-btn-hover-bg: #20307b;
+  --bs-btn-hover-border-color: #20307b;
+  --bs-btn-active-bg: #1d2b70;
+  --bs-btn-active-border-color: #1d2b70;
+}
+
+.btn-success {
+  --bs-btn-bg: var(--fm-green);
+  --bs-btn-border-color: var(--fm-green);
+  --bs-btn-hover-bg: #328f32;
+  --bs-btn-hover-border-color: #328f32;
+}
+
+.btn-danger,
+.btn-warning {
+  --bs-btn-bg: var(--fm-red);
+  --bs-btn-border-color: var(--fm-red);
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(247, 248, 247, 0.92);
+  color: var(--fm-gray-dark);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: rgba(42, 57, 141, 0.46);
+  box-shadow: 0 0 0 0.2rem rgba(42, 57, 141, 0.14);
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-  background-color: color-mix(in srgb, var(--fm-magenta) 20%, white);
-  color: #1e1730;
+  background-color: rgba(42, 57, 141, 0.1);
+  color: var(--fm-gray-dark);
 }
 
 .dropdown-item.active {
-  background-color: var(--fm-purple);
-  color: #fff;
+  background-color: var(--fm-blue);
+  color: var(--fm-white);
+}
+
+.table {
+  --bs-table-bg: transparent;
 }

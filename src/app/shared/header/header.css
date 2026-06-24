@@ -1,42 +1,86 @@
 .app-navbar {
-	background: linear-gradient(110deg, #f13ca0 0%, #4711bf 52%, #06d9b2 100%);
-	border-bottom: 3px solid #f2866f;
-	box-shadow: 0 8px 20px rgba(71, 17, 191, 0.18);
+	background:
+		linear-gradient(120deg, rgba(42, 57, 141, 0.96) 0%, rgba(42, 57, 141, 0.92) 36%, rgba(230, 29, 37, 0.94) 72%, rgba(60, 172, 59, 0.92) 100%);
+	border-bottom: 4px solid var(--fm-gray-light);
+	box-shadow: 0 14px 34px rgba(42, 57, 141, 0.2);
+	backdrop-filter: blur(10px);
 }
 
 .brand-icon {
 	font-size: 1.3rem;
+	width: 2.1rem;
+	height: 2.1rem;
+	display: inline-grid;
+	place-items: center;
+	border-radius: 999px;
+	background: rgba(247, 248, 247, 0.16);
+	box-shadow: inset 0 0 0 1px rgba(247, 248, 247, 0.18);
 }
 
 .brand-text {
-	color: #ffffff;
+	color: var(--fm-white);
+	letter-spacing: 0.04em;
+	font-size: 1.35rem;
 }
 
 .brand-accent {
-	color: #f2866f;
+	color: var(--fm-gray-light);
+}
+
+.navbar-toggler {
+	border-color: rgba(247, 248, 247, 0.4);
+	background: rgba(247, 248, 247, 0.08);
+}
+
+.navbar-toggler:focus {
+	box-shadow: 0 0 0 0.2rem rgba(247, 248, 247, 0.2);
+}
+
+.navbar-toggler-icon {
+	filter: invert(1);
 }
 
 .nav-link-app {
-	color: #ffffff;
+	color: rgba(247, 248, 247, 0.92);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	font-size: 0.92rem;
 }
 
 .nav-link-app:hover,
-.nav-link-app:focus {
-	color: #f2866f;
+.nav-link-app:focus,
+.nav-link-app.show {
+	color: var(--fm-gray-light);
 }
 
 .app-dropdown-menu {
-	background: color-mix(in srgb, #4711bf 90%, white);
-	border-color: #f13ca0;
+	background: rgba(247, 248, 247, 0.96);
+	border-color: rgba(71, 74, 74, 0.18);
+	border-radius: 1rem;
+	overflow: hidden;
+	min-width: 18rem;
+}
+
+.dropdown-header {
+	color: var(--fm-red);
+	font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+	font-size: 0.82rem;
+	letter-spacing: 0.12em;
+}
+
+.dropdown-divider {
+	border-top-color: rgba(71, 74, 74, 0.12);
 }
 
 .app-dropdown-item {
-	color: #ffffff;
-	transition: background 0.2s;
+	color: var(--fm-gray-dark);
+	transition: background-color 0.2s, color 0.2s, padding-left 0.2s;
 }
 
 .app-dropdown-item:hover,
-.app-dropdown-item:focus {
-	color: #ffffff;
-	background: color-mix(in srgb, #f13ca0 35%, transparent);
+.app-dropdown-item:focus,
+.app-dropdown-item.active {
+	color: var(--fm-blue);
+	background: linear-gradient(90deg, rgba(42, 57, 141, 0.08), rgba(60, 172, 59, 0.08));
+	padding-left: 1.25rem;
 }

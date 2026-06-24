@@ -1,0 +1,28 @@
+.app-footer {
+	margin-top: auto;
+	background: linear-gradient(90deg, rgba(71, 74, 74, 0.96), rgba(42, 57, 141, 0.96));
+	color: rgba(247, 248, 247, 0.92);
+	border-top: 4px solid var(--fm-red);
+	box-shadow: 0 -12px 32px rgba(42, 57, 141, 0.16);
+}
+
+.app-footer-kicker {
+	font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+	font-size: 0.8rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fm-gray-light);
+}
+
+.app-footer-title {
+	font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+	font-size: 1.5rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.app-footer-copy {
+	max-width: 42rem;
+	font-size: 0.96rem;
+	color: rgba(247, 248, 247, 0.78);
+}
