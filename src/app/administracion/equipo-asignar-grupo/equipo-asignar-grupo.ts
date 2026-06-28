@@ -83,10 +83,10 @@ export class EquipoAsignarGrupo {
       return;
     }
     this.equipoService
-      .asignarGrupo(Number(this.selectedEquipoId), { grupo: this.selectedGrupo })
+      .asignarGrupo(Number(this.selectedEquipoId), { idGrupo: this.selectedGrupo })
       .subscribe({
         next: (res) => {
-          const actualizados = this.equipos().map(e => (e.id === res.data.id ? res.data : e));
+          const actualizados = this.equipos().map(e => (e.idEquipo === res.data.idEquipo ? res.data : e));
           this.equipos.set(actualizados);
           this.mensajeExito.set(res.mensaje);
           this.cargarComposicion();
@@ -108,7 +108,7 @@ export class EquipoAsignarGrupo {
   }
 
   getEquipoNombre(equipo: Equipo): string {
-    return equipo.grupo ? `${equipo.nombre} (Grupo ${equipo.grupo})` : `${equipo.nombre} (Sin grupo)`;
+    return equipo.idGrupo ? `${equipo.nombre} (Grupo ${equipo.idGrupo})` : `${equipo.nombre} (Sin grupo)`;
   }
 
   mostrarGrupo(grupo: string) {

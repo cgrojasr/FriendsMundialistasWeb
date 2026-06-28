@@ -63,7 +63,7 @@
 									<option value="">Selecciona un partido</option>
 									@for (partido of partidosOrdenados(); track partido.id) {
 										<option [value]="partido.id">
-											Grupo {{ partido.grupo }} · {{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
+											Grupo {{ partido.idGrupo }} · {{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
 											({{ partido.fecha }} {{ partido.hora }})
 										</option>
 									}

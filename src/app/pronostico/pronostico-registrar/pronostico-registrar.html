@@ -46,7 +46,7 @@
                   <option [ngValue]="null">Selecciona un partido</option>
                   @for (partido of partidosDisponibles(); track partido.id) {
                     <option [ngValue]="partido.id">
-                      {{ partido.grupo }} · {{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
+                        {{ partido.idGrupo }} · {{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}
                       · {{ formatFechaHora(partido.fechaHoraIso) }}
                     </option>
                   }
@@ -118,7 +118,7 @@
                 <tbody>
                   @for (partido of partidosDisponibles(); track partido.id) {
                     <tr>
-                      <td>{{ partido.grupo }}</td>
+                      <td>{{ partido.idGrupo }}</td>
                       <td>{{ partido.equipoLocalNombre }}</td>
                       <td>{{ partido.equipoVisitanteNombre }}</td>
                       <td>{{ formatFechaHora(partido.fechaHoraIso) }}</td>

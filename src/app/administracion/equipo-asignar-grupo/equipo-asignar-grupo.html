@@ -47,8 +47,8 @@
 									(change)="limpiarMensajes()"
 								>
 									<option value="">Selecciona un equipo</option>
-									@for (equipo of equiposDisponibles(); track equipo.id) {
-										<option [value]="equipo.id">{{ getEquipoNombre(equipo) }}</option>
+									@for (equipo of equiposDisponibles(); track equipo.idEquipo) {
+										<option [value]="equipo.idEquipo">{{ getEquipoNombre(equipo) }}</option>
 									}
 								</select>
 							</div>

@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import {
   ApiResponse,
@@ -12,9 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class EquipoService {
-  private readonly http = inject(HttpClient);
   private readonly cookieService = inject(CookieService);
-  private readonly baseUrl = '/api/equipos';
 
   getAll(): Observable<ApiResponse<Equipo[]>> {
     // Simular respuesta desde la cookie (reemplazar con llamada real a la API)
@@ -27,9 +24,36 @@ export class EquipoService {
   }
 
   registrar(request: EquipoRegistrarRequest): Observable<ApiResponse<Equipo>> {
-    return of({ data: { id: Date.now(), nombre: request.nombre, grupo: request.grupo }, mensaje: 'Equipo registrado exitosamente.', exitoso: true });
-    // Simulación de respuesta exitosa (reemplazar con llamada real a la API)
-    // return this.http.post<ApiResponse<Equipo>>(this.baseUrl, request);
+    const nombre = request.nombre?.trim();
+    if (!nombre) {
+      return of({ data: null!, mensaje: 'El nombre del equipo es obligatorio.', exitoso: false });
+    }
+
+    const equipos: Equipo[] = this.cookieService.check('equipos')
+      ? JSON.parse(this.cookieService.get('equipos'))
+      : [];
+
+    const existe = equipos.some((equipo) => equipo.nombre.toLowerCase() === nombre.toLowerCase());
+    if (existe) {
+      return of({ data: null!, mensaje: `El equipo "${nombre}" ya existe.`, exitoso: false });
+    }
+
+    if (equipos.length >= 48) {
+      return of({ data: null!, mensaje: 'Se alcanzó el máximo de 48 equipos.', exitoso: false });
+    }
+
+    const nextId = equipos.length > 0 ? Math.max(...equipos.map((equipo) => equipo.idEquipo)) + 1 : 1;
+    const nuevoEquipo: Equipo = {
+      idEquipo: nextId,
+      nombre,
+      idGrupo: request.idGrupo,
+      fechaCreacion: new Date().toISOString(),
+    };
+
+    const actualizados = [...equipos, nuevoEquipo];
+    this.cookieService.set('equipos', JSON.stringify(actualizados));
+
+    return of({ data: nuevoEquipo, mensaje: 'Equipo registrado exitosamente.', exitoso: true });
   }
 
   asignarGrupo(equipoId: number, request: EquipoAsignarGrupoRequest): Observable<ApiResponse<Equipo>> {
@@ -37,9 +61,9 @@ export class EquipoService {
     let equipoAsignado: Equipo | null = null;
     if (this.cookieService.check('equipos')) {
       const equipos: Equipo[] = JSON.parse(this.cookieService.get('equipos'));
-      const equipoIndex = equipos.findIndex((e) => e.id === equipoId);
+      const equipoIndex = equipos.findIndex((e) => e.idEquipo === equipoId);
       if (equipoIndex !== -1) {
-        equipos[equipoIndex].grupo = request.grupo;
+        equipos[equipoIndex].idGrupo = request.idGrupo;
         equipoAsignado = equipos[equipoIndex];
         this.cookieService.set('equipos', JSON.stringify(equipos));
       }
@@ -55,20 +79,20 @@ export class EquipoService {
       const equipos: Equipo[] = JSON.parse(this.cookieService.get('equipos'));
       const gruposMap: { [key: string]: Equipo[] } = {};
       equipos.forEach((equipo) => {
-        const grupo = equipo.grupo || 'Sin Grupo';
-        if (!gruposMap[grupo]) {
-          gruposMap[grupo] = [];
+        const idGrupo = equipo.idGrupo || 'Sin Grupo';
+        if (!gruposMap[idGrupo]) {
+          gruposMap[idGrupo] = [];
         }
-        gruposMap[grupo].push(equipo);
+        gruposMap[idGrupo].push(equipo);
       });
-      gruposComposicion = Object.keys(gruposMap).map((grupo) => ({
-        grupo,
-        equipos: gruposMap[grupo],
+      gruposComposicion = Object.keys(gruposMap).map((idGrupo) => ({
+        grupo: idGrupo,
+        equipos: gruposMap[idGrupo],
       }));
     }
     return of({ data: gruposComposicion, mensaje: 'Composición de grupos obtenida exitosamente.', exitoso: true });
     // Simulación de respuesta (reemplazar con llamada real a la API)
     //
-    // return this.http.get<ApiResponse<GrupoComposicion[]>>('/api/grupos/composicion');
+    // return this.http.get<ApiResponse<GrupoComposicion[]>>(environment.apiRoutes.gruposComposicion);
   }
 }

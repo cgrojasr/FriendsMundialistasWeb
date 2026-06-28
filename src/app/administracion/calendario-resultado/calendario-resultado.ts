@@ -60,7 +60,7 @@ export class CalendarioResultado {
   readonly partidosVista = computed<PartidoResultadoVista[]>(() =>
     this.partidosOrdenados().map((partido) => ({
       id: partido.id,
-      grupo: partido.grupo,
+      grupo: partido.idGrupo,
       fase: partido.fase,
       equipoLocalNombre: partido.equipoLocalNombre,
       equipoVisitanteNombre: partido.equipoVisitanteNombre,

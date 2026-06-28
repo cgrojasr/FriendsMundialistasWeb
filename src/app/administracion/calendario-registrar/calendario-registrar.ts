@@ -31,7 +31,7 @@ export class CalendarioRegistrar {
 
   readonly equiposConGrupo = computed(() =>
     this.equipos()
-      .filter((equipo) => !!equipo.grupo && this.GRUPOS.includes(equipo.grupo.toUpperCase()))
+      .filter((equipo) => !!equipo.idGrupo && this.GRUPOS.includes(equipo.idGrupo.toUpperCase()))
       .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }))
   );
 
@@ -81,12 +81,16 @@ export class CalendarioRegistrar {
       return;
     }
 
-    if (equipoLocal.id === equipoVisitante.id) {
+    if (equipoLocal.idEquipo === equipoVisitante.idEquipo) {
       this.mensajeError.set('No se puede registrar un partido del equipo contra sí mismo.');
       return;
     }
 
-    if (!equipoLocal.grupo || !equipoVisitante.grupo || equipoLocal.grupo !== equipoVisitante.grupo) {
+    if (
+      !equipoLocal.idGrupo ||
+      !equipoVisitante.idGrupo ||
+      equipoLocal.idGrupo !== equipoVisitante.idGrupo
+    ) {
       this.mensajeError.set('Solo se permiten partidos entre equipos del mismo grupo.');
       return;
     }
@@ -105,10 +109,10 @@ export class CalendarioRegistrar {
     // }
 
     const yaExiste = this.partidos().some((partido) => {
-      const mismoGrupo = partido.grupo === equipoLocal.grupo;
+      const mismoGrupo = partido.idGrupo === equipoLocal.idGrupo;
       const mismoEnfrentamiento =
-        (partido.equipoLocalId === equipoLocal.id && partido.equipoVisitanteId === equipoVisitante.id) ||
-        (partido.equipoLocalId === equipoVisitante.id && partido.equipoVisitanteId === equipoLocal.id);
+        (partido.equipoLocalId === equipoLocal.idEquipo && partido.equipoVisitanteId === equipoVisitante.idEquipo) ||
+        (partido.equipoLocalId === equipoVisitante.idEquipo && partido.equipoVisitanteId === equipoLocal.idEquipo);
       return mismoGrupo && mismoEnfrentamiento;
     });
 
@@ -117,8 +121,8 @@ export class CalendarioRegistrar {
       return;
     }
 
-    const partidosLocal = this.contarPartidosEquipo(equipoLocal.id);
-    const partidosVisitante = this.contarPartidosEquipo(equipoVisitante.id);
+    const partidosLocal = this.contarPartidosEquipo(equipoLocal.idEquipo);
+    const partidosVisitante = this.contarPartidosEquipo(equipoVisitante.idEquipo);
 
     if (partidosLocal >= this.MAX_PARTIDOS_POR_EQUIPO || partidosVisitante >= this.MAX_PARTIDOS_POR_EQUIPO) {
       this.mensajeError.set('Uno de los equipos ya completó sus 3 partidos de fase de grupos.');
@@ -128,10 +132,10 @@ export class CalendarioRegistrar {
     this.cargando.set(true);
     this.calendarioService
       .registrarPartido({
-        grupo: equipoLocal.grupo,
-        equipoLocalId: equipoLocal.id,
+        idGrupo: equipoLocal.idGrupo,
+        equipoLocalId: equipoLocal.idEquipo,
         equipoLocalNombre: equipoLocal.nombre,
-        equipoVisitanteId: equipoVisitante.id,
+        equipoVisitanteId: equipoVisitante.idEquipo,
         equipoVisitanteNombre: equipoVisitante.nombre,
         fechaHoraIso,
       })
@@ -162,11 +166,11 @@ export class CalendarioRegistrar {
   }
 
   etiquetaEquipo(equipo: Equipo): string {
-    return `${equipo.nombre} (Grupo ${equipo.grupo})`;
+    return `${equipo.nombre} (Grupo ${equipo.idGrupo})`;
   }
 
   private buscarEquipo(id: number): Equipo | undefined {
-    return this.equiposConGrupo().find((equipo) => equipo.id === id);
+    return this.equiposConGrupo().find((equipo) => equipo.idEquipo === id);
   }
 
   private contarPartidosEquipo(idEquipo: number): number {

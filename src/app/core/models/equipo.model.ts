@@ -1,16 +1,18 @@
 export interface Equipo {
-  id: number;
+  idEquipo: number;
   nombre: string;
-  grupo?: string;
+  idGrupo?: string;
+  nombreGrupo?: string;
+  fechaCreacion: string;
 }
 
 export interface EquipoRegistrarRequest {
   nombre: string;
-  grupo?: string;
+  idGrupo?: string;
 }
 
 export interface EquipoAsignarGrupoRequest {
-  grupo: string;
+  idGrupo: string;
 }
 
 export interface GrupoComposicion {

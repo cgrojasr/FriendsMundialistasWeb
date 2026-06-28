@@ -48,8 +48,8 @@
 									(change)="limpiarMensajes()"
 								>
 									<option value="">Selecciona equipo local</option>
-									@for (equipo of equiposConGrupo(); track equipo.id) {
-										<option [value]="equipo.id">{{ etiquetaEquipo(equipo) }}</option>
+									@for (equipo of equiposConGrupo(); track equipo.idEquipo) {
+										<option [value]="equipo.idEquipo">{{ etiquetaEquipo(equipo) }}</option>
 									}
 								</select>
 							</div>
@@ -64,8 +64,8 @@
 									(change)="limpiarMensajes()"
 								>
 									<option value="">Selecciona equipo visitante</option>
-									@for (equipo of equiposConGrupo(); track equipo.id) {
-										<option [value]="equipo.id">{{ etiquetaEquipo(equipo) }}</option>
+									@for (equipo of equiposConGrupo(); track equipo.idEquipo) {
+										<option [value]="equipo.idEquipo">{{ etiquetaEquipo(equipo) }}</option>
 									}
 								</select>
 							</div>
@@ -134,7 +134,7 @@
 								@for (partido of partidosOrdenados(); track partido.id) {
 									<tr>
 										<td>
-											<span class="badge cr-badge-group">Grupo {{ partido.grupo }}</span>
+											<span class="badge cr-badge-group">Grupo {{ partido.idGrupo }}</span>
 										</td>
 										<td class="text-white fw-semibold">
 											{{ partido.equipoLocalNombre }} vs {{ partido.equipoVisitanteNombre }}

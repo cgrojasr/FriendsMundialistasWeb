@@ -74,11 +74,11 @@ export class EquipoVisualizarGrupo {
       }
 
       for (const equipo of item.equipos) {
-        if (equipoIds.has(equipo.id)) {
+        if (equipoIds.has(equipo.idEquipo)) {
           duplicados.add(equipo.nombre);
           continue;
         }
-        equipoIds.add(equipo.id);
+        equipoIds.add(equipo.idEquipo);
         gruposMap.get(grupo)?.push(equipo);
       }
     }

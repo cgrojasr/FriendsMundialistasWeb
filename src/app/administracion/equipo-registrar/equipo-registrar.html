@@ -129,8 +129,8 @@
             <li class="list-group-item wc-list-item d-flex align-items-center gap-3 py-3">
               <span class="wc-num">{{ i + 1 }}</span>
               <span class="flex-grow-1 fw-semibold text-white">{{ equipo.nombre }}</span>
-              @if (equipo.grupo) {
-                <span class="badge wc-badge-grupo">Grupo {{ equipo.grupo }}</span>
+              @if (equipo.idGrupo) {
+                <span class="badge wc-badge-grupo">Grupo {{ equipo.idGrupo }}</span>
               } @else {
                 <span class="badge wc-badge-singrupo">Sin grupo</span>
               }

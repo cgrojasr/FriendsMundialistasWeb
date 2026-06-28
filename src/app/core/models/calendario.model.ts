@@ -1,6 +1,6 @@
 export interface PartidoGrupo {
   id: number;
-  grupo: string;
+  idGrupo: string;
   equipoLocalId: number;
   equipoLocalNombre: string;
   equipoVisitanteId: number;
@@ -17,7 +17,7 @@ export interface ResultadoOficial {
 }
 
 export interface PartidoGrupoRegistrarRequest {
-  grupo: string;
+  idGrupo: string;
   equipoLocalId: number;
   equipoLocalNombre: string;
   equipoVisitanteId: number;

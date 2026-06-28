@@ -59,7 +59,7 @@ export class EquipoRegistrar implements OnInit {
     this.cargando = true;
 
     this.equipoService
-      .registrar({ nombre: this.nuevoNombre.trim(), grupo: this.nuevoGrupo || undefined })
+      .registrar({ nombre: this.nuevoNombre.trim(), idGrupo: this.nuevoGrupo || undefined })
       .subscribe({
         next: (res) => {
           this.cargando = false;
